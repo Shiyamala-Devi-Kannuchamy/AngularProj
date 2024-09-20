@@ -2,10 +2,10 @@
 <html lang="en" ng-app="LunchCheck">
   <head>
     <title>Lunch Checker</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
     <script src="angular.min.js"></script>
     <script src="app.js"></script>
-
+    <link rel="stylesheet" href="./styles/styles.css"></link>
   </head>
 <body>
    <div ng-controller="lunchController">
@@ -13,16 +13,14 @@
          <div>
              Enter Item Here:<input type="text" ng-model="itemName"
              placeholder="list comma separated dishes you usually have for lunch"/>
+             an empty item, i.e., , , is not considered
          </div>
          <br>
          <div>
              <button ng-click="lunchCheck();">Check If Too Much</button>
          </div><br>
-         <div>
-            Message for you: {{ message }}
+         Message for you:<div class="warning"> {{ message }}
          </div>
-
    </div>
-
 </body>
 </html>

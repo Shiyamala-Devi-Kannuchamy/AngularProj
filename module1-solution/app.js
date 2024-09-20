@@ -8,14 +8,21 @@
   function lunchController($scope, $filter) {
     $scope.itemName ="";
     $scope.message = "";
+    $scope.count = 0;
 
     $scope.lunchCheck = function(){
-      var itemCount = $scope.itemName.split(',');
-      if (itemCount.length == 0){
+      $scope.name = $scope.itemName.replace(/\s/g, "");
+      var itemCount = $scope.name.split(',');
+      for (var i=0; i < itemCount.length; i++ ) {
+        if (itemCount[i] !== "") {
+          $scope.count++;
+        }
+      }
+      if (itemCount.length === 1 && $scope.name === ""){
         $scope.message = "Please enter data first!";
-      } else if (itemCount.length <= 3) {
+      } else if ($scope.count <= 3) {
         $scope.message = "Enjoy!";
-      } else if (itemCount.length > 3){
+      } else if ($scope.count > 3){
         $scope.message = "Too Much!";
       }
     };
