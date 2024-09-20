@@ -1,111 +1,94 @@
-(function() {
-'use strict';
+(function(){'use strict';
 
-  angular.module('ShoppingListCheckOff',[])
-  .controller('ToBuyController', ToBuyController)
-  .controller('AlreadyBoughtController', AlreadyBoughtController)
-  .service('ShoppingListCheckOffService', ShoppingListCheckOffService);
+angular.module('ShoppingListCheckOff',[])
+		.controller('ToBuyController', ToBuyController)
+		.controller('AlreadyBoughtController', AlreadyBoughtController)
+		.service('ShoppingListCheckOffService',ShoppingListCheckOffService);
+
+	ToBuyController.$inject = ['ShoppingListCheckOffService'];
+	function ToBuyController(ShoppingListCheckOffService){
+		var buyList = this;
+
+		buyList.bought = function (index){
+			ShoppingListCheckOffService.boughtItems(index);
+		}
+
+		buyList.isEmpty = function()
+		{
+			return ShoppingListCheckOffService.emptyBuy();
+		}
+
+		buyList.items = ShoppingListCheckOffService.showBuyItems();
+	}
 
 
-  ToBuyController.$inject = ['ShoppingListCheckOffService'];
-  function ToBuyController(ShoppingListCheckOffService) {
-    var toBuyList =this;
-    toBuyList.items = ShoppingListCheckOffService.getItems();
+	AlreadyBoughtController.$inject = ['ShoppingListCheckOffService'];
+	function AlreadyBoughtController(ShoppingListCheckOffService){
+		var boughtList = this;
 
-    toBuyList.removeItem = function (index) {
-      ShoppingListCheckOffService.boughtItems(index);
-    };
+		boughtList.items = ShoppingListCheckOffService.showBoughtItems();
 
-    toBuyList.isEmpty = function () {
-      try {
-        ShoppingListCheckOffService.emptyToBuy();
-      } catch (error) {
-        toBuyList.errorMessage = error.message;
-        console.log("errorMessage", toBuyList.errorMessage, error.message);
-      }
-    }
-  }
+		boughtList.isEmpty = function()
+		{
+			return ShoppingListCheckOffService.emptyBought();
+		}
+	}
 
-  AlreadyBoughtController.$inject = ['ShoppingListCheckOffService'];
-  function AlreadyBoughtController(ShoppingListCheckOffService) {
-    var boughtList = this;
 
-    boughtList.items = ShoppingListCheckOffService.showBoughtItems();
+	function ShoppingListCheckOffService(){
+		var service = this;
+		var toBuy = [
+		{
+			name : "Milk",
+			quant : "1 bag"
+		},
+		{
+			name : "Sugar",
+			quant : "2 packets"
+		},
+		{
+			name : "Butter",
+			quant : "1 packet"
+		},
+		{
+			name : "curd",
+			quant : "1 pack"
+		},
+		{
+			name : "carrot",
+			quant : "1 pack"
+		}
+		];
 
-    boughtList.isEmpty = function () {
-      console.log("empty ::" );
-      try {
-        ShoppingListCheckOffService.emptyAlreadyBought();
-      } catch (error) {
-        console.log("errorMessage", boughtList.errorMessage, error.message);
-        boughtList.errorMessage = error.message;
-        console.log("errorMessage", boughtList.errorMessage, error.message);
-      }
-    }
-  }
+		var alreadyBought = [];
 
-  function ShoppingListCheckOffService() {
-    var service = this;
-    var alreadyBought = [];
-    var items = [
-      {
-        name: "vadai",
-        quantity: 2
-      },
-      {
-        name: "mittai",
-        quantity: 129
-      },
-      {
-        name: "iceCream",
-        quantity: 20
-      },
-      {
-        name: "Peanut butter",
-        quantity: 12
-      },
-      {
-        name: "Milk",
-        quantity: 12
-      }
-    ];
+		service.boughtItems = function(index){
+			alreadyBought.push(toBuy[index]);
+			toBuy.splice(index,1);
+		}
 
-    service.boughtItems = function (index) {
-        alreadyBought.push(items[index]);
-        items.splice(index, 1);
-    }
+		service.showBuyItems = function(){
+			return toBuy;
+		}
 
-    service.showBoughtItems = function () {
-      return alreadyBought;
-    }
+		service.showBoughtItems = function(){
+			return alreadyBought;
+		}
 
-    service.showBuyItems = function () {
-      return items;
-    }
+		service.emptyBuy = function(){
+			if (toBuy.length === 0){
+				return true;
+			}
+			else return false;
+		}
 
-    service.emptyToBuy = function () {
-      console.log("emptyToBuy ::", items.length);
-      if (items.length === 0) {
-        throw new Error ("Empty !!!.");
-       //return true;
-      } else {
-        return false;
-      }
-    }
+		service.emptyBought = function(){
+			if (alreadyBought.length === 0){
+				return true;
+			}
+			else return false;
+		}
 
-    service.emptyAlreadyBought = function () {
-      if (alreadyBought.length === 0) {
-//        console.log("inside");
-        throw new Error ("Everything is empty!.");
-      //return "true";
-      } else {
-        return false;
-      }
-    }
-
-    service.getItems = function () {
-      return items;
-    };
-  }
+	}
 
 })();
