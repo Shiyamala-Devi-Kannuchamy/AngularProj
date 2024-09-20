@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html ng-app="ShoppingListDirectiveApp">
+  <head>
+    <meta charset="utf-8">
+    <script src="angular.min.js"></script>
+    <script src="app.js"></script>
+    <title>Directive Isolate scope</title>
+  </head>
+  <body >
+    <h3>Directive Isolate scope</h3>
+    <div id="list1" ng-controller='ShoppingListController1 as list1'>
+      <input type="text" ng-model="list1.itemName" placeholder="Item Name">
+      <input type="text" ng-model="list1.itemQuantity" placeholder="Item Quantity">
+      <button ng-click="list1.addItem();"> Add Item to Shopping List</button>
+
+      <shopping-list my-list="list1" title="{{ list1.title }}"> </shopping-list>
+      <div ng-if="list1.errorMessage">Error: {{ list1.errorMessage }}</div>
+    </div>
+
+    <div id="list2" ng-controller='ShoppingListController2 as list2'>
+      <input type="text" ng-model="list2.itemName" placeholder="Item Name">
+      <input type="text" ng-model="list2.itemQuantity" placeholder="Item Quantity">
+      <button ng-click="list2.addItem();"> Add Item to Shopping List</button>
+
+      <shopping-list my-list="list2" title="Shopping List 2 (limited 3 items)"> </shopping-list>
+      <div class="error" ng-if="list2.errorMessage">Error: {{ list2.errorMessage }}</div>
+    </div>
+
+  </body>
+</html>

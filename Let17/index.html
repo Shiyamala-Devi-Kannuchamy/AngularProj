@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html ng-app="ShoppingListApp">
+  <head>
+    <meta charset="utf-8">
+    <script src="angular.min.js"></script>
+    <script src="app.js"></script>
+    <title>ng-repeat</title>
+  </head>
+  <body >
+    <h2>Digest loop</h2>
+    <div ng-controller="ShoppingListController">
+      <h3>Shopping List</h3>
+      <!-- <ul>
+        <li ng-repeat="item in shoppingList1">{{ item }}</li>
+      </ul> -->
+      <!-- <ul>
+        <li ng-repeat="item in shoppingList2">Buy {{ item.quantity }} of
+        {{ item.name }}(s)</li>
+      </ul> -->
+      <input type="text" ng-model="shoppingList2[0].quantity">
+      <ul>
+        <li ng-repeat="item in shoppingList2">{{ $index + 1 }}. Buy {{ item.quantity }} of
+        {{ item.name }}(s)</li>
+      </ul>
+      <input type="text" ng-model="newItemName" placeholder="item Name">
+      <input type="text" ng-model="newItemQanutity" placeholder="item Quantity">
+      <button type="button" ng-click="addToList()">Add to List</button>
+  </div>
+  </body>
+</html>

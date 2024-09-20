@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html ng-app="CounterApp">
+  <head>
+    <meta charset="utf-8">
+    <script src="angular.min.js"></script>
+    <script src="app.js"></script>
+    <title>CounterApp</title>
+  </head>
+  <body >
+    <h2>Digest loop</h2>
+    <div ng-controller="CounterController">
+      <button ng-click="upCounter()">Log # of Waters</button> <br>
+    <div>
+      Regular Counter : {{ counter}}
+    </div>
+  </div>
+  </body>
+</html>

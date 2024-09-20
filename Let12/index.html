@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html ng-app="MsgApp">
+  <head>
+    <meta charset="utf-8">
+    <script src="angular.min.js"></script>
+    <script src="app.js"></script>
+    <title>Expression & Interpolation</title>
+  </head>
+  <body >
+    <h2>Expression & Interpolation</h2>
+    <div ng-controller="msgController">
+      Message Is:
+      {{ sayMsg(); }}
+
+      <div>
+        <button ng-click="feedShiyam()">FeedShiyam</button>
+        Cost is : {{ cost | currency : '%':3}}
+        <br>
+        <img ng-src="images/Leaf_{{stateOfBeing}}.jpg"/>
+      </div>
+
+    </div>
+  </body>
+</html>
