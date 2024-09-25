@@ -1,40 +1,29 @@
 
 <!doctype html>
-<html lang="en" ng-app='NarrowItDownApp'>
-   <head>
-      <title>Narrow Down Your Menu Choice</title>
-      <meta name="viewport" content="width=device-width, initial-scale=1">
-      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-      integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-      <!-- <link rel="stylesheet" href="styles/bootstrap.min.css"> -->
-      <link rel="stylesheet" href="styles/styles.css">
-      <script src="angular.min.js"></script>
-      <script src="app.js"></script>
-      <style>
-         .emptyMessage {
-         font-weight: bold;
-         color: red;
-         font-size: 1.2em;
-         width: 200px;
-         }
-      </style>
-   </head>
-   <body>
-      <div class="container">
-         <h1>Narrow Down Your Chinese Menu Choice</h1>
-         <!--Controller as Syntax-->
-         <div ng-controller='NarrowItDownController as menu'>
-            <div class="form-group">
-               <input ng-model="menu.searchTerm" type="text" placeholder="search term" class="form-control">
-            </div>
-            <div class="form-group narrow-button">
-               <button class="btn btn-primary" ng-click="menu.search();">Narrow It Down For Me!</button>
-            </div>
-            <div style="height:50px"></div>
-            <div class="emptyMessage">{{menu.nothingFound}}</div>
-            <found-items
-               items="menu.foundItems" title="{{menu.foundItems}}"   on-remove="menu.removeItem(index)"></found-items>
-         </div>
-      </div>
-   </body>
+<html lang="en" ng-app="NarrowItDownApp">
+  <head>
+    <title>Narrow Down Your Menu Choice</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="angular.min.js"></script>
+    <script src="app.js"></script>
+    <link rel="stylesheet" href="styles/bootstrap.min.css">
+    <link rel="stylesheet" href="styles/styles.css">
+  </head>
+<body>
+   <div ng-controller='NarrowItDownController as menu'>
+    <h1>Narrow Down Your Chinese Menu Choice</h1>
+
+    <div class="form-group">
+      <input type="text" placeholder="search term" class="form-control" ng-model="menu.searchTerm">
+    </div>
+    <div class="form-group narrow-button">
+      <button class="btn btn-primary" ng-click="menu.getItems();">Narrow It Down For Me!</button>
+    </div><br>
+    <div style="height:50px"></div>
+    <div class="emptyMessage">{{menu.nothingFound}}</div>
+   <div><found-items found="menu.found" on-remove="menu.removeItem(index)"></found-items></div>
+  </div>
+
+
+</body>
 </html>

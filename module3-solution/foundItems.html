@@ -1,9 +1,9 @@
+<h3>Found List Details</h3>
 <ul>
- <li ng-repeat="item in menu.items">
-   {{ item.name }},
-   {{ item.short_name }},
-   {{ item.description }}
-   <button type="button" name="button" ng-click="menu.onRemove({index: $index});">Don't want this one!</button>
+    <li ng-repeat="item in list.found">
+    <div><b>{{ item.name }}</b></div>
+    <div>(description: {{item.description}}) </div>
+    <button ng-click="list.onRemove({index: $index});">Don't want this one!</button>
 
  </li>
 </ul>
