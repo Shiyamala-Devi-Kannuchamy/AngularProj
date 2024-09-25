@@ -44,11 +44,6 @@
                 completeList = response.data;
                 angular.forEach(completeList, function(element){
                     angular.forEach(element.menu_items, function(item){
-                      //  console.log(item);
-                        // if(item.description.indexOf(menu.searchTerm) !== -1) {
-                        //   console.log("serarch: ", menu.searchTerm);
-                        //         menu.found.push(item);
-                        //     };
                         if (menu.searchTerm.length === 0) {
                           menu.nothingFound = "Nothing found";
                         } else if (item.description.indexOf(menu.searchTerm) !== -1) {
@@ -56,7 +51,6 @@
                         };
                     });
                 });
-              //  console.log("founs items in the menu:", menu.found);
             })
             .catch(function(error){
                 console.log(error)
@@ -74,7 +68,6 @@
        var service = this;
        service.foundItems = [];
        service.getMatchedMenuItems = function (){
-           //sconsole.log("search items");
            var response = $http({
                method: "GET",
                url: (MenuApiPath + "/menu_items.json")
