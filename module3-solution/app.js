@@ -1,26 +1,16 @@
 (function() {
     'use strict';
 
-    // const express = require('express');
-    // const app = express();
-    //
-    // app.use(function (req, res, next) {
-    //   res.header("Access-Control-Allow-Origin", "*");
-    //   res.header("Access-Control-Allow-Headers", "Origin, x-REquested with, Content Type, Accept");
-    //   next();
-    // })
-
-    angular.module('NarrowItDownApp', [])
+  angular.module('NarrowItDownApp', [])
         .controller('NarrowItDownController', NarrowItDownController)
         .service('MenuSearchService', MenuSearchService)
-        .constant('ApiBasePath', "https://github.io/davids-restaurant.herokuapp.com")
+        .constant('ApiBasePath', "https://davids-restaurant.herokuapp.com")
         .directive('foundItems', FoundItemsDirective);
 
     function FoundItemsDirective() {
         var ddo = {
             templateUrl: 'foundItems.html',
             scope: {
-                AccessControlAllowOrigin: "*",
                 items: '<',
                 myTitle: '@title',
                 onRemove: '&'

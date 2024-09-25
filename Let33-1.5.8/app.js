@@ -15,7 +15,7 @@ angular.module('ShoppingListComponentApp', [])
 });
 
 ShoppingListComponentController.$inject = ['$element'];
-function ShoppingListComponentController($element) {
+function ShoppingListComponentController( $element) {
   var $ctrl = this;
   var totalItems;
 
