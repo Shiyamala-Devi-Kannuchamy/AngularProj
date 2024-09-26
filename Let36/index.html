@@ -1,44 +1,25 @@
 <!DOCTYPE html>
-<html ng-app='ShoppingList'>
+<html ng-app='RountingApp'>
   <head>
     <meta charset="utf-8">
     <link rel="stylesheet" href="css/style.css">
-    <title>Shopping List With Events</title>
+    <title>Intro to UI router</title>
   </head>
   <body>
-    <h1>Shopping List With Events:</h1>
-    <div id="list" ng-controller='ShoppingListController as list'>
-      <input type="text" ng-model="list.itemName" placeholder="item name">
-      <input type="text" ng-model="list.itemQuantity" placeholder="quantity">
-      <button ng-click="list.addItem();">Add Item</button>
-      <span>{{ list.lastRemoved }}</span>
-
-      <shopping-list
-        items="list.items"
-        title="{{list.title}}"
-        on-remove="list.removeItem(index)"></shopping-list>
-
+    <h1>Intro to UI router</h1>
+    <div class="tabs">
+      <a ui-sref="tab1" ui-sref-active="activeTab">Tab 1</a>
+      <a ui-sref="tab2" ui-sref-active="activeTab">Tab 2</a>
+      <!-- <button ui-sref="tab2">Tab 2</button> -->
     </div>
 
-    <loading-spinner></loading-spinner>
+    <ui-view></ui-view>
 
     <!-- Libraries -->
-    <script src="lib/jquery-3.1.0.min.js"></script>
+
     <script src="lib/angular.min.js"></script>
+      <script src="lib/angular-ui-router.min.js"></script>
 
-    <!-- Modules -->
-
-    <script src="src/shoppinglist/shoppinglist.module.js"></script>
-    <script src="src/spinner/spinner.module.js"></script>
-
-    <!-- 'ShoppingList' module artifacts -->
-    <script src="src/shoppinglist/shoppinglist.component.js"></script>
-    <script src="src/shoppinglist/shoppinglist.controller.js"></script>
-    <script src="src/shoppinglist/shoppinglist.factory.js"></script>
-    <script src="src/shoppinglist/weightlossfilter.service.js"></script>
-
-    <!-- 'Spinner' module artifacts -->
-    <script src="src/spinner/loadingspinner.component.js"></script>
-
+    <script src="src/app.js"></script>
   </body>
 </html>
