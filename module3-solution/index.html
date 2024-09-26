@@ -2,7 +2,7 @@
 <!doctype html>
 <html lang="en" ng-app="NarrowItDownApp">
   <head>
-    <title>Narrow Down Your Menu Choice</title>
+    <title>Narrow Down - Menu Choice</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="angular.min.js"></script>
     <script src="app.js"></script>
@@ -10,18 +10,18 @@
     <link rel="stylesheet" href="styles/styles.css">
   </head>
 <body>
-   <div ng-controller='NarrowItDownController as menu'>
-    <h1>Narrow Down Your Chinese Menu Choice</h1>
+   <div ng-controller='NarrowItDownController as item'>
+    <h1>Narrow It Down For Me!</h1>
 
     <div class="form-group">
-      <input type="text" placeholder="search term" class="form-control" ng-model="menu.searchTerm">
+      <input type="text" placeholder="search term" class="form-control" ng-model="item.searchTerm">
     </div>
     <div class="form-group narrow-button">
-      <button class="btn btn-primary" ng-click="menu.getItems();">Narrow It Down For Me!</button>
+      <button class="btn btn-primary" ng-click="item.getItems();">Narrow It Down For Me!</button>
     </div><br>
     <div style="height:50px"></div>
-    <div class="emptyMessage">{{menu.nothingFound}}</div>
-   <div><found-items found="menu.found" on-remove="menu.removeItem(index)"></found-items></div>
+    <div class="emptyMessage">{{item.nothingFound}}</div>
+   <div><found-items found="item.found" on-remove="item.removeItem(index)"></found-items></div>
   </div>
 
 
