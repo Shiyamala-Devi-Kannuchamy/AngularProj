@@ -29,6 +29,21 @@ function RoutesConfig($stateProvider, $urlRouterProvider) {
         return ShoppingListService.getItems();
       }]
     }
+  })
+
+  .state('itemDetail', {
+    url: '/item-detail/{itemId}',
+    templateUrl: 'src/shoppinglist/templates/item-detail.template.html',
+    controller: 'ItemDetailController as itemDetail',
+    resolve: {
+      item: ['$stateParams', 'ShoppingListService',
+            function ($stateParams, ShoppingListService) {
+              return ShoppingListService.getItems()
+                .then(function (items) {
+                  return items[$stateParams.itemId];
+                });
+            }]
+    }
   });
 }
 
