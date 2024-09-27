@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html ng-app='MenuApp'>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="css/styles.css">
+    <title>Menu for Restaraunt</title>
+  </head>
+  <body>
+        <ui-view></ui-view>
+
+        <loading-spinner></loading-spinner>
+
+        <!-- Libraries -->
+        <script src="lib/angular.min.js"></script>
+        <script src="lib/angular-ui-router.min.js"></script>
+
+        <!-- Modules -->
+        <script src="src/menulist/menuapp.module.js"></script>
+        <script src="src/menulist/data.module.js"></script>
+        <script src="src/spinner/spinner.module.js"></script>
+
+        <!-- Routes -->
+        <script src="src/routes.js"></script>
+
+        <!-- MenuApp module artifacts -->
+        <script src="src/menulist/categories.component.js"></script>
+        <script src="src/menulist/categories.controller.js"></script>
+        <script src="src/menulist/items.component.js"></script>
+        <script src="src/menulist/items.controller.js"></script>
+
+        <!-- Data module artifacts -->
+        <script src="src/menulist/menudata.service.js"></script>
+
+        <!-- 'Spinner' module artifacts -->
+        <script src="src/spinner/loadingspinner.component.js"></script>
+
+  </body>
+</html>
