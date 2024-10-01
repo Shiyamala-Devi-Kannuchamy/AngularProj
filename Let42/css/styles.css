@@ -1,23 +1,22 @@
 body {
   font-size: 1.2em;
 }
-
-.error {
-  color: red;
-  font-weight: bold;
-  display: none;
+input {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+button {
+  font-size: 24px;
 }
 
-.loading-icon {
-  position: absolute;
-  left: 50%;
-  top: 50%;
+.ng-touched.ng-valid {
+  border: 2px green solid;
 }
 
-li[ui-sref]:hover {
-  display: inline-block;
-  cursor: pointer;
-  border: solid black 1px;
-  padding-left: 5px;
-  padding-right: 5px;
+.ng-touched.ng-invalid {
+  border: 2px red solid;
+}
+
+#info {
+  margin-top: 20px;
 }
