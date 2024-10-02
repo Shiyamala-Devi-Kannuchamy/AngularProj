@@ -1,35 +1,31 @@
 (function () {
 'use strict';
 
-angular.module('Data')
-.service('MenuDataService', MenuDataService)
-.constant('ApiBasePath', "https://coursera-jhu-default-rtdb.firebaseio.com");
+angular.module('data')
+.service('MenuDataService', MenuDataService);
 
+MenuDataService.$inject = ['$http'];
 
-MenuDataService.$inject = ['$http', 'ApiBasePath']
-function MenuDataService($http, ApiBasePath) {
+function MenuDataService($http) {
   var menuService = this;
 
   menuService.getAllCategories = function () {
       return $http({
         method: "GET",
-        url: (ApiBasePath + "/categories.json")
+        url: ('https://coursera-jhu-default-rtdb.firebaseio.com/categories.json')
       }).then(function (response) {
         return response.data;
       });
-  }
+  };
 
   menuService.getItemsForCategory = function (categoryShortName) {
       return $http({
         method: "GET",
-        url: (ApiBasePath + "/menu_items.json"),
-        params: {
-          category: categoryShortName
-        }
+        url: ('https://coursera-jhu-default-rtdb.firebaseio.com/menu_items/'+categoryShortName+'.json')
       }).then(function (response) {
         return response.data.menu_items;
       });
-  }
+  };
 }
 
 })();

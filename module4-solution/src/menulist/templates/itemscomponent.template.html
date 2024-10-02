@@ -1,5 +1,13 @@
-<ol>
-  <li ng-repeat="item in $ctrl.items">
-    {{item.short_name}} , {{item.name}}, {{item.description}}
-  </li>
-</ol>
+<h2>Item Details</h2>
+<table border="1">
+  <th> Item Name </th>
+  <th> Item Short Name</th>
+  <th> Item Description</th>
+  <th> Item Price</th>
+  <tr ng-repeat="categoriesItem in $ctrl.items">
+    <td>{{ categoriesItem.name }}</td>
+    <td>{{ categoriesItem.short_name }}</td>
+    <td>{{ categoriesItem.description }}</td>
+    <td>{{ categoriesItem.price_large | currency }}</td>
+  </tr>
+</table>
