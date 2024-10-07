@@ -1,41 +1,59 @@
-<h1 class="text-center">Signup</h1>
+<div class="container">
+      <!-- <fieldset> -->
+        <h2>Sign up Form</h2>
+        <form name='regForm' novalidate>
 
-<div class="row">
-    <div class="col-xs-1 col-sm-2 col-md-3"></div>
+          <input type="text" name="username" placeholder="Enter your Name Here"
+            ng-model="signUpCtrl.user.username"
+            required
+            minlength="4"
+            ng-maxlength="10">
 
-    <div class="col-xs-10 col-sm-8 col-md-6">
-        <form class="form-vertical" name="signupForm" ng-submit="signupCtrl.signup(signupForm)" novalidate>
-            <div class="form-group" ng-class="{'has-error': signupForm.firstName.$error.required && (!signupForm.firstName.$pristine || signupForm.$submitted)}">
-                <label for="firstName">First Name *</label>
-                <input class="form-control" type="text" name="firstName" ng-model="signupCtrl.user.firstName" required />
-                <span ng-show="signupForm.firstName.$error.required && (!signupForm.firstName.$pristine || signupForm.$submitted)" class="help-block">Enter your first name.</span>
-            </div>
-            <div class="form-group" ng-class="{'has-error': signupForm.lastName.$error.required && (!signupForm.lastName.$pristine || signupForm.$submitted)}">
-                <label for="lastName">Last Name *</label>
-                <input class="form-control" type="text" name="lastName" ng-model="signupCtrl.user.lastName" required />
-                <span ng-show="signupForm.lastName.$error.required && (!signupForm.lastName.$pristine || signupForm.$submitted)" class="help-block">Enter your last name.</span>
-            </div>
-            <div class="form-group" ng-class="{'has-error': (signupForm.email.$error.required && (!signupForm.email.$pristine || signupForm.$submitted)) || signupForm.email.$error.email }">
-                <label for="email">Email *</label>
-                <input class="form-control" type="email" name="email" ng-model="signupCtrl.user.email" required />
-                <span ng-show="signupForm.email.$error.required && (!signupForm.email.$pristine || signupForm.$submitted)" class="help-block">Enter your email address.</span>
-                <span ng-show="signupForm.email.$error.email" class="help-block">Enter a valid email address e.g xxx@xxx.xxx.</span>
-            </div>
-            <div class="form-group" ng-class="{'has-error': (signupForm.phone.$error.required && (!signupForm.phone.$pristine || signupForm.$submitted)) || (signupForm.phone.$error.minlength || signupForm.phone.$error.maxlength)}">
-                <label for="phone">Phone Number *</label>
-                <input class="form-control" type="number" name="phone" ng-model="signupCtrl.user.phone" ng-minlength="9" ng-maxlength="9" required />
-                <span ng-show="signupForm.phone.$error.required && (!signupForm.phone.$pristine || signupForm.$submitted)" class="help-block">Enter your phone number.</span>
-                <span ng-show="signupForm.phone.$error.minlength || signupForm.phone.$error.maxlength" class="help-block">Phone number should be 9 digits long.</span>
-            </div>
-            <div class="form-group" ng-class="{'has-error': signupCtrl.showError}">
-                <label for="favoriteDish">Favorite Dish</label>
-                <input class="form-control" type="text" name="favoriteDish" ng-model="signupCtrl.user.favoriteDish"/>
-                <span ng-show="signupCtrl.showError" class="help-block">That dish doesn't exist.</span>
-            </div>
-            <input type="submit" class="btn btn-default" value="Signup"/>
-            <span class="text-success" ng-show="signupCtrl.showMessage">You have signed up.</span>
-        </form>
-    </div>
+            <span
+              ng-if="(regForm.username.$error.minlength || regForm.username.$error.required) && regForm.username.$touched">
+              Username must be at least 4 characters long
+            </span>
+            <span ng-if="regForm.username.$error.maxlength && regForm.username.$touched">
+              User Name must not be longer than 10 characters
+            </span>
+            <br>
 
-    <div class="col-xs-1 col-sm-2 col-md-3"></div>
+          <input type="email" name="email" placeholder="Enter Email Here"
+            ng-model="signUpCtrl.user.email"
+            required>
+            <span ng-if="regForm.email.$invalid && regForm.email.$touched">
+              Must be a valid email address: xxx@domain format
+            </span>
+            <br>
+
+          <input type="text" name="phone" placeholder="Phone ###-###-####"
+            ng-model="signUpCtrl.user.phone"
+            pattern="(\d{3})-(\d{3})-(\d{4})"
+            required>
+            <span ng-if="regForm.phone.$invalid && regForm.phone.$touched">
+              Phone must be in the format ###-###-####.
+            </span>
+            <br>
+
+            <input type="text" name="favDish" placeholder="Favorite dish"
+            ng-model="signUpCtrl.user.favDish"
+            required>
+            <br>
+            <input type="text" name="favDishId" placeholder="Favorite dish Id"
+            ng-model="signUpCtrl.user.favDishId" required>
+
+            <span ng-if="regForm.favDishId.$touched">
+              {{signUpCtrl.message}}
+            </span>
+            <br>
+
+          <button
+            ng-disabled="regForm.$invalid"
+            ng-click="signUpCtrl.submit()">Submit</button>
+          </form>
+      <!-- </fieldset> -->
+
+      <div id="info" ng-if="signUpCtrl.completed">
+        Your information has been saved
+      </div>
 </div>

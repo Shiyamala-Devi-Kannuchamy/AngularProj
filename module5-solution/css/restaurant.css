@@ -77,6 +77,12 @@ body {
   padding-right: 15px;
 }
 
+input {
+  font-size: 14px;
+  color: #000;
+  margin-bottom: 10px;
+}
+
 .navbar-header button.navbar-toggle, .navbar-header .icon-bar {
   border: 1px solid #61122f;
 }

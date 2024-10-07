@@ -1,36 +1,31 @@
-(function() {
-    'use strict';
+(function () {
+"use strict";
 
-    angular.module('public').controller('SignupController', SignupController);
-    SignupController.$inject = ['MenuService'];
-    var SignupController = function(MenuService) {
-        var vm = this;
+angular.module('public')
+.controller('SignUpController', SignUpController);
 
-        vm.user = {};
-        vm.favoriteDish = {};
+SignUpController.$inject = ['MenuService']
+function SignUpController(MenuService) {
+    var signUpCtrl = this;
+    signUpCtrl.user = [];
+    signUpCtrl.message = "";
 
-        vm.showError = false;       // When this value is true error about the favorite dish wiil be shown
-        vm.showMessage = false;     // When this value is true message about successfull signup will be shown
+    signUpCtrl.submit = function () {
+        signUpCtrl.completed = true;
 
-        vm.signup = function(form) {
-            vm.showError = false;
-            vm.showMessage = false;
-            // If the form is not valid don't submit
-            if(form.$invalid) {
-                console.log('The form is not valid');
-                return;
-            }
+        signUpCtrl.content = (MenuService.getSingleMenuItem(
+          signUpCtrl.user.favDish, signUpCtrl.user.favDishId))
+            .then(function (response) {
+              signUpCtrl.item = response;
+              if(signUpCtrl.item == null) {
+                  signUpCtrl.message = "Cant find the specified dish in the menu";
+              }
+            })
 
-            MenuService.getFavoriteDish(vm.user.favoriteDish).then(function(response) {
-                vm.user.favoriteDishDetails = response.data;
-                console.log(vm.favoriteDish);
-                MenuService.saveUser(vm.user);
-                vm.showMessage = true;
-            }, function(error) {
-                console.log(error);
-                vm.showError = true;
-            });
-        };
+        MenuService.saveUserInfo(signUpCtrl.user.username,
+          signUpCtrl.user.email, signUpCtrl.user.phone,
+          signUpCtrl.user.favDish, signUpCtrl.user.favDishId)
     };
+ }
 
 })();
